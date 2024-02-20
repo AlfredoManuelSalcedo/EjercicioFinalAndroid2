@@ -66,7 +66,7 @@ public class vender extends AppCompatActivity {
             FeedReaderDbHelper dbHelper = new FeedReaderDbHelper(getApplicationContext());
             SQLiteDatabase db = dbHelper.getWritableDatabase();
             if(monedaCom=="Bitcoin"){
-                if(comprar.bitcoinC>0){
+                if(comprar.bitcoinC>=cantidadCom){
                     pagar=cantidadCom*47848.8;
                     db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD-"+cantidadCom+" where _id="+1);
                     db.close();
@@ -74,14 +74,14 @@ public class vender extends AppCompatActivity {
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
                 }else{
-                    CharSequence text = "Bitcoin insuficiente";
+                    CharSequence text = "Bitcoin insuficiente"+cantidadCom;
                     int duration = Toast.LENGTH_SHORT;
                     Toast toast = Toast.makeText(vender.this, text, duration);
                     toast.show();
                 }
 
             }else if(monedaCom=="Ethereum"){
-                if(comprar.ethereumC>0){
+                if(comprar.ethereumC>=cantidadCom){
                     pagar=cantidadCom*2710.37;
                     db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD-"+cantidadCom+" where _id="+2);
                     db.close();
@@ -96,7 +96,7 @@ public class vender extends AppCompatActivity {
                 }
 
             }else if(monedaCom=="Dogecoin"){
-               if(comprar.dogecoinC>0){
+               if(comprar.dogecoinC>=cantidadCom){
                    pagar=cantidadCom*0.080;
                    db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD-"+cantidadCom+" where _id="+3);
                    db.close();
@@ -110,7 +110,7 @@ public class vender extends AppCompatActivity {
                    toast.show();
                }
             }else if(monedaCom=="Cardano"){
-                if(comprar.cardanoC>0){
+                if(comprar.cardanoC>=cantidadCom){
                     pagar=cantidadCom*0.58;
                     db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD-"+cantidadCom+" where _id="+4);
                     db.close();

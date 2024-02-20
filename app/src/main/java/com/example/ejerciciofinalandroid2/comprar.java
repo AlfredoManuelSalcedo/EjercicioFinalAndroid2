@@ -83,7 +83,7 @@ public class comprar extends AppCompatActivity {
                     pPrincipal.saldo=pPrincipal.saldo-pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
-                    bitcoinC+=1;
+                    bitcoinC=bitcoinC+cantidadCom;
                 }
             }else if(monedaCom=="Ethereum"){
                 pagar=cantidadCom*2710.37;
@@ -98,7 +98,7 @@ public class comprar extends AppCompatActivity {
                     pPrincipal.saldo=pPrincipal.saldo-pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
-                    ethereumC+=1;
+                    ethereumC=ethereumC+cantidadCom;
                 }
             }else if(monedaCom=="Dogecoin"){
                 pagar=cantidadCom*0.080;
@@ -113,7 +113,7 @@ public class comprar extends AppCompatActivity {
                     pPrincipal.saldo=pPrincipal.saldo-pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
-                    dogecoinC+=1;
+                    dogecoinC=dogecoinC+cantidadCom;
                 }
             }else if(monedaCom=="Cardano"){
                 pagar=cantidadCom*0.58;
@@ -128,7 +128,7 @@ public class comprar extends AppCompatActivity {
                     pPrincipal.saldo=pPrincipal.saldo-pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
-                    cardanoC+=1;
+                    cardanoC=cardanoC+cantidadCom;
                 }
             }
         }

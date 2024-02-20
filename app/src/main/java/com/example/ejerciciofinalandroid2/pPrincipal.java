@@ -32,33 +32,7 @@ public class pPrincipal extends AppCompatActivity implements View.OnClickListene
         cartera.setOnClickListener(this);
         salir.setOnClickListener(this);
 
-        FeedReaderDbHelper dbHelper = new FeedReaderDbHelper(this);
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        ContentValues values = new ContentValues();
-        values.put(FeedReaderContract.FeedEntry._ID,"1");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_NAME, "Bitcoin");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_VALOR, "47848.8");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_CANTIDAD, "0");
-        long newRowId = db.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
-        ContentValues values2 = new ContentValues();
-        values2.put(FeedReaderContract.FeedEntry._ID,"2");
-        values2.put(FeedReaderContract.FeedEntry.COLUMN_NAME_NAME, "Ethereum");
-        values2.put(FeedReaderContract.FeedEntry.COLUMN_NAME_VALOR, "2710.37");
-        values2.put(FeedReaderContract.FeedEntry.COLUMN_NAME_CANTIDAD, "0");
-        long newRowId2 = db.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
-        ContentValues values3 = new ContentValues();
-        values.put(FeedReaderContract.FeedEntry._ID,"3");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_NAME, "Dogecoin");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_VALOR, "0.080");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_CANTIDAD, "0");
-        long newRowId3 = db.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
-        ContentValues values4 = new ContentValues();
-        values.put(FeedReaderContract.FeedEntry._ID,"4");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_NAME, "Cardano");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_VALOR, "0.58");
-        values.put(FeedReaderContract.FeedEntry.COLUMN_NAME_CANTIDAD, "0");
-        long newRowId4 = db.insert(FeedReaderContract.FeedEntry.TABLE_NAME, null, values);
     }
 
     @Override
@@ -73,7 +47,7 @@ public class pPrincipal extends AppCompatActivity implements View.OnClickListene
             startActivity(ej);
         }
         else if (img==findViewById(R.id.imageCartera)) {
-            Intent ej= new Intent(v.getContext(), comprar.class);
+            Intent ej= new Intent(v.getContext(), cartera.class);
             startActivity(ej);
         }
         else if (img==findViewById(R.id.imageSalir)) {
