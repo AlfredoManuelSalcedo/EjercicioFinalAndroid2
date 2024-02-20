@@ -2,7 +2,6 @@ package com.example.ejerciciofinalandroid2;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -21,19 +20,23 @@ public class comprar extends AppCompatActivity {
     EditText cantidad;
     Button comprarM;
 
+    Button volver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comprar);
         saldodispo=findViewById(R.id.saldoDis);
         monedaS=findViewById(R.id.monedasele);
-        comprarM=findViewById(R.id.buttonCompra);
+        comprarM=findViewById(R.id.buttonCompra2);
+        volver=findViewById(R.id.buttonVolver);
         cantidad=findViewById(R.id.editTextText);
         String saldodisponible= String.valueOf(pPrincipal.saldo);
         saldodispo.setText(saldodisponible+"€");
         ListView listado = findViewById(R.id.listado);
         final String[] datos = new String[]{"Bitcoin","Ethereum","Dogecoin","Cardano"};
         comprarM.setOnClickListener(comprarCripto);
+        volver.setOnClickListener(volverM);
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,datos);
         listado.setAdapter(adaptador);
         listado.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -119,6 +122,13 @@ public class comprar extends AppCompatActivity {
                     saldodispo.setText(saldodisponible2+"€");
                 }
             }
+        }
+    };
+
+    public View.OnClickListener volverM = new View.OnClickListener() {
+        public void onClick(View view) {
+            Intent ej= new Intent(view.getContext(), pPrincipal.class);
+            startActivity(ej);
         }
     };
 }
