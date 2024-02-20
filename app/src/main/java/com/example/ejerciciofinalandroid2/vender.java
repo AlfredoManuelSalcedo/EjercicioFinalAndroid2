@@ -66,33 +66,64 @@ public class vender extends AppCompatActivity {
             FeedReaderDbHelper dbHelper = new FeedReaderDbHelper(getApplicationContext());
             SQLiteDatabase db = dbHelper.getWritableDatabase();
             if(monedaCom=="Bitcoin"){
-                pagar=cantidadCom*47848.8;
+                if(comprar.bitcoinC>0){
+                    pagar=cantidadCom*47848.8;
                     db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD-"+cantidadCom+" where _id="+1);
                     db.close();
                     pPrincipal.saldo=pPrincipal.saldo+pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
+                }else{
+                    CharSequence text = "Bitcoin insuficiente";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(vender.this, text, duration);
+                    toast.show();
+                }
+
             }else if(monedaCom=="Ethereum"){
-                pagar=cantidadCom*2710.37;
+                if(comprar.ethereumC>0){
+                    pagar=cantidadCom*2710.37;
                     db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD-"+cantidadCom+" where _id="+2);
                     db.close();
-                    pPrincipal.saldo=pPrincipal.saldo-pagar;
+                    pPrincipal.saldo=pPrincipal.saldo+pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
+                }else{
+                    CharSequence text = "Ethereum insuficiente";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(vender.this, text, duration);
+                    toast.show();
+                }
+
             }else if(monedaCom=="Dogecoin"){
-                pagar=cantidadCom*0.080;
-                    db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD-"+cantidadCom+" where _id="+3);
-                    db.close();
-                    pPrincipal.saldo=pPrincipal.saldo-pagar;
-                    String saldodisponible2= String.valueOf(pPrincipal.saldo);
-                    saldodispo.setText(saldodisponible2+"€");
+               if(comprar.dogecoinC>0){
+                   pagar=cantidadCom*0.080;
+                   db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD-"+cantidadCom+" where _id="+3);
+                   db.close();
+                   pPrincipal.saldo=pPrincipal.saldo+pagar;
+                   String saldodisponible2= String.valueOf(pPrincipal.saldo);
+                   saldodispo.setText(saldodisponible2+"€");
+               }else{
+                   CharSequence text = "Dogecoin insuficiente";
+                   int duration = Toast.LENGTH_SHORT;
+                   Toast toast = Toast.makeText(vender.this, text, duration);
+                   toast.show();
+               }
             }else if(monedaCom=="Cardano"){
-                pagar=cantidadCom*0.58;
+                if(comprar.cardanoC>0){
+                    pagar=cantidadCom*0.58;
                     db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD-"+cantidadCom+" where _id="+4);
                     db.close();
-                    pPrincipal.saldo=pPrincipal.saldo-pagar;
+                    pPrincipal.saldo=pPrincipal.saldo+pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
+                }else{
+                    CharSequence text = "Cardano insuficiente";
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(vender.this, text, duration);
+                    toast.show();
+                }
+
             }
         }
     };

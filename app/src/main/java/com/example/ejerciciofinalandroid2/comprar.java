@@ -21,6 +21,11 @@ public class comprar extends AppCompatActivity {
     Button comprarM;
 
     Button volver;
+    public static double bitcoinC = 0;
+    public static double ethereumC = 0;
+    public static double dogecoinC = 0;
+    public static double cardanoC = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +78,12 @@ public class comprar extends AppCompatActivity {
                     Toast toast = Toast.makeText(comprar.this, text, duration);
                     toast.show();
                 }else{
-                    db.execSQL("UPDATE CRIPTO SET CANTIDAD ="+cantidadCom+" where _id="+1);
+                    db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD+"+cantidadCom+" where _id=1");
                     db.close();
                     pPrincipal.saldo=pPrincipal.saldo-pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
+                    bitcoinC+=1;
                 }
             }else if(monedaCom=="Ethereum"){
                 pagar=cantidadCom*2710.37;
@@ -87,11 +93,12 @@ public class comprar extends AppCompatActivity {
                     Toast toast = Toast.makeText(comprar.this, text, duration);
                     toast.show();
                 }else{
-                    db.execSQL("UPDATE CRIPTO SET CANTIDAD ="+cantidadCom+" where _id="+2);
+                    db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD+"+cantidadCom+" where _id=2");
                     db.close();
                     pPrincipal.saldo=pPrincipal.saldo-pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
+                    ethereumC+=1;
                 }
             }else if(monedaCom=="Dogecoin"){
                 pagar=cantidadCom*0.080;
@@ -101,11 +108,12 @@ public class comprar extends AppCompatActivity {
                     Toast toast = Toast.makeText(comprar.this, text, duration);
                     toast.show();
                 }else{
-                    db.execSQL("UPDATE CRIPTO SET CANTIDAD ="+cantidadCom+" where _id="+3);
+                    db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD+"+cantidadCom+" where _id=3");
                     db.close();
                     pPrincipal.saldo=pPrincipal.saldo-pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
+                    dogecoinC+=1;
                 }
             }else if(monedaCom=="Cardano"){
                 pagar=cantidadCom*0.58;
@@ -115,11 +123,12 @@ public class comprar extends AppCompatActivity {
                     Toast toast = Toast.makeText(comprar.this, text, duration);
                     toast.show();
                 }else{
-                    db.execSQL("UPDATE CRIPTO SET CANTIDAD ="+cantidadCom+" where _id="+4);
+                    db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD+"+cantidadCom+" where _id=4");
                     db.close();
                     pPrincipal.saldo=pPrincipal.saldo-pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
+                    cardanoC+=1;
                 }
             }
         }
