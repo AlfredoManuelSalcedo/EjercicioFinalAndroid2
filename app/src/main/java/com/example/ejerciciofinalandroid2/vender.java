@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class comprar extends AppCompatActivity {
+public class vender extends AppCompatActivity {
     TextView saldodispo;
     TextView monedaS;
     EditText cantidad;
@@ -25,7 +25,7 @@ public class comprar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comprar);
+        setContentView(R.layout.activity_vender);
         saldodispo=findViewById(R.id.saldoDis);
         monedaS=findViewById(R.id.monedasele);
         comprarM=findViewById(R.id.buttonCompra2);
@@ -35,7 +35,7 @@ public class comprar extends AppCompatActivity {
         saldodispo.setText(saldodisponible+"€");
         ListView listado = findViewById(R.id.listado);
         final String[] datos = new String[]{"Bitcoin","Ethereum","Dogecoin","Cardano"};
-        comprarM.setOnClickListener(comprarCripto);
+        comprarM.setOnClickListener(venderCripto);
         volver.setOnClickListener(volverM);
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,datos);
         listado.setAdapter(adaptador);
@@ -57,7 +57,7 @@ public class comprar extends AppCompatActivity {
             }
         });
     }
-    public View.OnClickListener comprarCripto = new View.OnClickListener() {
+    public View.OnClickListener venderCripto = new View.OnClickListener() {
         public void onClick(View view) {
             String monedaCom=String.valueOf(monedaS.getText());
             String cantidadComS= cantidad.getText().toString();
@@ -67,63 +67,36 @@ public class comprar extends AppCompatActivity {
             SQLiteDatabase db = dbHelper.getWritableDatabase();
             if(monedaCom=="Bitcoin"){
                 pagar=cantidadCom*47848.8;
-                if (pagar>pPrincipal.saldo){
-                    CharSequence text = "saldo insuficiente";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(comprar.this, text, duration);
-                    toast.show();
-                }else{
-                    db.execSQL("UPDATE CRIPTO SET CANTIDAD ="+cantidadCom+" where _id="+1);
+                    db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD-"+cantidadCom+" where _id="+1);
                     db.close();
-                    pPrincipal.saldo=pPrincipal.saldo-pagar;
+                    pPrincipal.saldo=pPrincipal.saldo+pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
-                }
             }else if(monedaCom=="Ethereum"){
                 pagar=cantidadCom*2710.37;
-                if (pagar>pPrincipal.saldo){
-                    CharSequence text = "saldo insuficiente";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(comprar.this, text, duration);
-                    toast.show();
-                }else{
-                    db.execSQL("UPDATE CRIPTO SET CANTIDAD ="+cantidadCom+" where _id="+2);
+                    db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD-"+cantidadCom+" where _id="+2);
                     db.close();
                     pPrincipal.saldo=pPrincipal.saldo-pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
-                }
             }else if(monedaCom=="Dogecoin"){
                 pagar=cantidadCom*0.080;
-                if (pagar>pPrincipal.saldo){
-                    CharSequence text = "saldo insuficiente";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(comprar.this, text, duration);
-                    toast.show();
-                }else{
-                    db.execSQL("UPDATE CRIPTO SET CANTIDAD ="+cantidadCom+" where _id="+3);
+                    db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD-"+cantidadCom+" where _id="+3);
                     db.close();
                     pPrincipal.saldo=pPrincipal.saldo-pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
-                }
             }else if(monedaCom=="Cardano"){
                 pagar=cantidadCom*0.58;
-                if (pagar>pPrincipal.saldo){
-                    CharSequence text = "saldo insuficiente";
-                    int duration = Toast.LENGTH_SHORT;
-                    Toast toast = Toast.makeText(comprar.this, text, duration);
-                    toast.show();
-                }else{
-                    db.execSQL("UPDATE CRIPTO SET CANTIDAD ="+cantidadCom+" where _id="+4);
+                    db.execSQL("UPDATE CRIPTO SET CANTIDAD =CANTIDAD-"+cantidadCom+" where _id="+4);
                     db.close();
                     pPrincipal.saldo=pPrincipal.saldo-pagar;
                     String saldodisponible2= String.valueOf(pPrincipal.saldo);
                     saldodispo.setText(saldodisponible2+"€");
-                }
             }
         }
     };
+
     public View.OnClickListener volverM = new View.OnClickListener() {
         public void onClick(View view) {
             Intent ej= new Intent(view.getContext(), pPrincipal.class);

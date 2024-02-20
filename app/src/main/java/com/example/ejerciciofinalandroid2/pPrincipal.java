@@ -69,7 +69,7 @@ public class pPrincipal extends AppCompatActivity implements View.OnClickListene
             startActivity(ej);
         }
         else if (img==findViewById(R.id.imageVender)) {
-            Intent ej= new Intent(v.getContext(), comprar.class);
+            Intent ej= new Intent(v.getContext(), vender.class);
             startActivity(ej);
         }
         else if (img==findViewById(R.id.imageCartera)) {
